@@ -3,25 +3,25 @@ var SkatePark = require('./skatepark.js');
 var Skater = require('./skater.js');
 
 describe('Skate Park', function() {
-  it.skip('should be a function', function() {
+  it('should be a function', function() {
     assert.isFunction(SkatePark);
   });
 
-  it.skip('should have a name', function() {
+  it('should have a name', function() {
     var skatePark1 = new SkatePark({name:'Burnside'});
     var skatePark2 = new SkatePark({name:'Woodward'});
     assert.equal(skatePark1.name, 'Burnside');
     assert.equal(skatePark2.name, 'Woodward');
   })
 
-  it.skip('should have the year it was built', function() {
+  it('should have the year it was built', function() {
     var skatePark1 = new SkatePark({name: 'Burnside', year: 1990});
     var skatePark2 = new SkatePark({name: 'Woodward', year: 1970});
     assert.equal(skatePark1.yearFounded, 1990);
     assert.equal(skatePark2.yearFounded, 1970);
   })
 
-  it.skip('should have a style', function() {
+  it('should have a style', function() {
     var skatePark1 = new SkatePark({name: 'Burnside', year: 1990, type: 'transition'});
     var skatePark2 = new SkatePark({name: 'Woodward', year: 1970, type: 'flow'});
 
@@ -29,7 +29,7 @@ describe('Skate Park', function() {
     assert.equal(skatePark2.style, 'flow');
   })
 
-  it.skip('should have some unique features', function() {
+  it('should have some unique features', function() {
     var features1 = ['pyramid', 'concrete coping', 'pools'];
 
     var skatePark1 = new SkatePark({
@@ -38,13 +38,13 @@ describe('Skate Park', function() {
       type: 'transition',
       features: features1
     });
-    
+
     var features2 = ['full pipe', 'street course', '11 foot bowls'];
 
     var skatePark2 = new SkatePark({
-      name: 'Louisville Extreme Park', 
-      year: 2002, 
-      type: 'flow', 
+      name: 'Louisville Extreme Park',
+      year: 2002,
+      type: 'flow',
       features: features2
     });
 
@@ -52,18 +52,18 @@ describe('Skate Park', function() {
     assert.equal(skatePark2.features, features2);
   })
 
-  it.skip('should default to being a public park', function() {
+  it('should default to being a public park', function() {
     var skatePark1 = new SkatePark({
-      name: 'Louisville Extreme Park', 
-      year: 2002, 
-      type: 'flow', 
+      name: 'Louisville Extreme Park',
+      year: 2002,
+      type: 'flow',
       features: ['full pipe', 'street course', '11 foot bowls']
     });
 
     var skatePark2 = new SkatePark({
-      name: 'Curbside', 
-      year: 2018, 
-      type: 'street', 
+      name: 'Curbside',
+      year: 2018,
+      type: 'street',
       features: ['indoor', 'staircase', 'quarter pipe'],
       isPrivate: true
     });
@@ -72,20 +72,20 @@ describe('Skate Park', function() {
     assert.equal(skatePark2.isPrivate, true);
   })
 
-  it.skip('should defaut to being free', function() {
+  it('should defaut to being free', function() {
     var skatePark1 = new SkatePark({
-      name: 'Louisville Extreme Park', 
-      year: 2002, 
-      type: 'flow', 
+      name: 'Louisville Extreme Park',
+      year: 2002,
+      type: 'flow',
       features: ['full pipe', 'street course', '11 foot bowls']
     });
 
     var skatePark2 = new SkatePark({
-      name: 'Curbside', 
-      year: 2018, 
-      type: 'street', 
+      name: 'Curbside',
+      year: 2018,
+      type: 'street',
       features: ['indoor', 'staircase', 'quarter pipe'],
-      isPrivate: true, 
+      isPrivate: true,
       price: 12
     });
 
@@ -93,7 +93,7 @@ describe('Skate Park', function() {
     assert.equal(skatePark2.cost, 12)
   });
 
-  it.skip('should be able to keep track of its occupants', function() {
+  it('should be able to keep track of its occupants', function() {
     var skatePark = new SkatePark({
       name: 'Major Taylor',
       year: 1999,
@@ -109,16 +109,16 @@ describe('Skate Park', function() {
   // Stop!
   // Scroll down a bit and finish the Skater tests (line 235)
   // before completing the rest of these Skatepark tests
-  
-  it.skip('should take payment from the skater only if it is a private park', function() {
+
+  it('should take payment from the skater only if it is a private park', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: true
     }
     var skater = new Skater({
-      name: 'Scott', 
-      skill: 'Intermediate', 
+      name: 'Scott',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 20
     });
@@ -131,30 +131,30 @@ describe('Skate Park', function() {
     })
 
     var skatePark2 = new SkatePark({
-      name: 'Curbside', 
-      year: 2018, 
-      type: 'street', 
+      name: 'Curbside',
+      year: 2018,
+      type: 'street',
       features:['indoor', 'staircase', 'quarter pipe'],
-      isPrivate: true, 
+      isPrivate: true,
       price: 12
     });
 
     assert.equal(skatePark.admit(skater), 'Welcome to the free Major Taylor Skatepark!')
     assert.equal(skater.money, 20)
     assert.deepEqual(skatePark.occupants, [skater])
-    
+
     assert.equal(skatePark2.admit(skater), 'Welcome to Curbside, the cost will be $12.00.')
     assert.equal(skater.money, 8)
     assert.deepEqual(skatePark2.occupants, [skater])
   })
 
-  it.skip('should only admit skaters to a private park if they can pay', function() {
+  it('should only admit skaters to a private park if they can pay', function() {
     var skatePark = new SkatePark({
-      name: 'Curbside', 
-      year: 2018, 
-      type: 'street', 
+      name: 'Curbside',
+      year: 2018,
+      type: 'street',
       features:['indoor', 'staircase', 'quarter pipe'],
-      isPrivate: true, 
+      isPrivate: true,
       price: 12
     });
 
@@ -165,75 +165,75 @@ describe('Skate Park', function() {
     }
 
     var skater = new Skater({
-      name: 'Dennis', 
-      skill: 'Intermediate', 
+      name: 'Dennis',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 10
     });
 
     var skatePark = new SkatePark({
-      name: 'Woodward', 
-      year: 2018, 
-      type: 'street', 
+      name: 'Woodward',
+      year: 2018,
+      type: 'street',
       features: ['indoor', 'staircase', 'quarter pipe'],
-      isPrivate: true, 
+      isPrivate: true,
       price: 12
     });
 
     assert.equal(skatePark.admit(skater), `Sorry, you don't have enough money.`)
   })
 
-  it.skip('should only allow 3 skaters at a time for social distancing', function() {
+  it('should only allow 3 skaters at a time for social distancing', function() {
     var tricks = {
       kickflip: true,
       treflip: true,
       bigSpin: true
     }
     var skater = new Skater({
-      name: 'Harriet', 
-      skill: 'Advanced', 
+      name: 'Harriet',
+      skill: 'Advanced',
       tricks: tricks,
       cash: 52
     });
     var skater2 = new Skater({
-      name: 'Eric', 
-      skill: 'Intermediate', 
+      name: 'Eric',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 52
     });
     var skater3 = new Skater({
-      name: 'Jack', 
-      skill: 'Advanced', 
+      name: 'Jack',
+      skill: 'Advanced',
       tricks: tricks,
       cash: 50
     });
     var skater4 = new Skater({
-      name: 'Eliza', 
-      skill: 'Intermediate', 
+      name: 'Eliza',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 200
     });
 
     var skatePark = new SkatePark({
-      name: 'Woodward', 
-      year: 1970, 
-      type: 'Flow', 
+      name: 'Woodward',
+      year: 1970,
+      type: 'Flow',
       features: ['indoor', 'Foam Pit', 'Half Pipe'],
-      isPrivate: true, 
+      isPrivate: true,
       price:50
     });
 
     skatePark.admit(skater)
     skatePark.admit(skater2)
     skatePark.admit(skater3)
-  
+
     assert.deepEqual(skatePark.occupants, [skater, skater2, skater3])
     assert.equal(skatePark.admit(skater4), 'Sorry, we are at max capacity. Thank you for understanding.')
   })
 })
 
 describe('Skater', function() {
-  it.skip('should have a name', function() {
+  it('should have a name', function() {
     var skater = new Skater({name: 'Scott'});
     var skater2 = new Skater({name: 'Nora'})
 
@@ -241,7 +241,7 @@ describe('Skater', function() {
     assert.equal(skater2.name, 'Nora');
   })
 
-  it.skip('should have a skill level', function() {
+  it('should have a skill level', function() {
     var skater = new Skater({name: 'Scott', skill: 'Intermediate'});
     var skater2 = new Skater({name: 'Nora', skill: 'Advanced'});
 
@@ -249,15 +249,15 @@ describe('Skater', function() {
     assert.equal(skater2.skill, 'Advanced');
   })
 
-  it.skip('should know some tricks', function() {
+  it('should know some tricks', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: true
     }
     var skater = new Skater({
-      name: 'Scott', 
-      skill: 'Intermediate', 
+      name: 'Scott',
+      skill: 'Intermediate',
       tricks: tricks
     });
 
@@ -267,8 +267,8 @@ describe('Skater', function() {
       bigSpin: true
     }
     var skater2 = new Skater({
-      name: 'Nora', 
-      skill: 'Advanced', 
+      name: 'Nora',
+      skill: 'Advanced',
       tricks: tricks2
     });
 
@@ -276,15 +276,15 @@ describe('Skater', function() {
     assert.equal(skater2.tricks.treflip, true)
   })
 
-  it.skip('should have some money', function() {
+  it('should have some money', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: true
     }
     var skater = new Skater({
-      name: 'Scott', 
-      skill: 'Intermediate', 
+      name: 'Scott',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 20
     });
@@ -295,8 +295,8 @@ describe('Skater', function() {
       bigSpin: true
     }
     var skater2 = new Skater({
-      name: 'Asha', 
-      skill: 'Advanced', 
+      name: 'Asha',
+      skill: 'Advanced',
       tricks: tricks2,
       cash: 200
     });
@@ -305,15 +305,15 @@ describe('Skater', function() {
     assert.equal(skater2.money, 200)
   })
 
-  it.skip('should start off with no frustration', function() {
+  it('should start off with no frustration', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: true
     }
     var skater = new Skater({
-      name: 'Shane', 
-      skill: 'Intermediate', 
+      name: 'Shane',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 20
     });
@@ -321,37 +321,36 @@ describe('Skater', function() {
     assert.equal(skater.frustration, 0)
   })
 
-  it.skip('should increase frustration by 1 when practicing tricks they dont know', function() {
+  it('should increase frustration by 1 when practicing tricks they dont know', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: false
     }
     var skater = new Skater({
-      name: 'Jake', 
-      skill: 'Intermediate', 
+      name: 'Jake',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 20
     });
 
     skater.practice('kickflip')
-
-    assert.equal(skate.frustration, 0)
+    assert.equal(skater.frustration, 0)
     skater.practice('treflip')
     skater.practice('treflip')
 
     assert.equal(skater.frustration, 2)
   })
 
-  it.skip('should learn a trick after practicing and getting frustrated 3 times', function() {
+  it('should learn a trick after practicing and getting frustrated 3 times', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: false
     }
     var skater = new Skater({
-      name: 'Natalie', 
-      skill: 'Intermediate', 
+      name: 'Natalie',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 20
     });
@@ -364,15 +363,15 @@ describe('Skater', function() {
     assert.equal(skater.tricks.bigSpin, true)
   })
 
-  it.skip('should be able to learn many tricks  after practicing and getting frustrated 3 times', function() {
+  it('should be able to learn many tricks  after practicing and getting frustrated 3 times', function() {
     var tricks = {
       kickflip: true,
       treflip: false,
       bigSpin: false
     }
     var skater = new Skater({
-      name: 'Natalie', 
-      skill: 'Intermediate', 
+      name: 'Natalie',
+      skill: 'Intermediate',
       tricks: tricks,
       cash: 20
     });
@@ -388,18 +387,18 @@ describe('Skater', function() {
     skater.practice('treflip')
 
     assert.equal(skater.practice('treflip'), 'I just learned to treflip!!!')
-    assert.equal(skater.tricks.treflip, true) 
+    assert.equal(skater.tricks.treflip, true)
   })
 
-  it.skip('should lose all frustration after learning a new trick', function() {
+  it('should lose all frustration after learning a new trick', function() {
     var tricks = {
       kickflip: false,
       treflip: false,
       bigSpin: false
     }
     var skater = new Skater({
-      name: 'Lyanna', 
-      skill: 'Beginner', 
+      name: 'Lyanna',
+      skill: 'Beginner',
       tricks: tricks,
       cash: 20
     });
